@@ -30,6 +30,9 @@ class Solution {
     }
 }
 /*
+Time Complexity: O(nlogk) where n is the total number of nodes and k is the number of lists.
+Space Complexity: O(n) to create the new list (or O(1) extra space).
+/*
 You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
 
 Merge all the linked-lists into one sorted linked-list and return it.
