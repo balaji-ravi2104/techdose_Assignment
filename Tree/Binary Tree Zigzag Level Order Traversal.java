@@ -30,7 +30,7 @@ class Solution {
                 if(flag){
                     list.add(n.val);
                 }else{
-                    list.add(0,n.val);
+                    list.add(0,n.val); // it will insert the value in the index - 0 of the list.... 
                 }
                 
                 if(n.left!=null)
