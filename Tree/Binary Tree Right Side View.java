@@ -27,7 +27,7 @@ class Solution {
                 if(i==0)
                     list.add(temp.val);
                 
-                if(temp.right!=null)
+                if(temp.right!=null) // For left side view we can give left subtree first and right subtree next;
                     q.offer(temp.right);
                 if(temp.left!=null)
                     q.offer(temp.left);
