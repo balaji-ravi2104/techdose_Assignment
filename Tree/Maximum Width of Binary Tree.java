@@ -13,47 +13,38 @@
  *     }
  * }
  */
- class pair{
-    TreeNode node;
-    int num;
-    pair(TreeNode _node,int _num){
-        node=_node;
-        num=_num;
-    }
-}
 class Solution {
     public int widthOfBinaryTree(TreeNode root) {
-        if(root==null)
-        {
-            return 0;
-        }
-        int ans=0;
-        Queue<pair> q = new LinkedList<>();
-        q.offer(new pair(root,0));
-        while(!q.isEmpty()){
-            int size=q.size();
-            int minn=q.peek().num;
-            int first=0,last=0;
-            for(int i=0;i<size;i++){
-                int cur_id = q.peek().num-minn;
-                TreeNode node = q.peek().node;
-                q.poll();
-                if(i==0)
-                    first = cur_id;
-                if(i==size-1)
-                    last = cur_id;
-                    
-                if(node.left!=null){
-                    q.offer(new pair(node.left,cur_id*2+1));
+        if(root == null) return 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<Integer>  count = new LinkedList<>();
+        queue.offer(root);
+        count.offer(0);
+        int max = 1;
+        
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            int left = 0;
+            int right = 0;
+            for(int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                int index = count.poll();
+                if(i == 0)  left = index;
+                if(i == size-1)  right = index;
+                if(node.left != null) {
+                    queue.offer(node.left);
+                    count.offer(index*2);
                 }
-                if(node.right!=null){
-                    q.offer(new pair(node.right,cur_id*2+2));
+                if(node.right != null) {
+                    queue.offer(node.right);
+                    count.offer(index*2 + 1);
                 }
             }
-            ans=Math.max(ans,last-first+1);
+            max = Math.max(max,right - left + 1);
         }
-        return ans;
+        return max;
     }
+}
 }
 /*
 Given the root of a binary tree, return the maximum width of the given tree.
