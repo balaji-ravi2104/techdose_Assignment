@@ -1,4 +1,5 @@
 // Recrusion with Memoization
+//TC-->0(n*m)
 class Solution {
   public int uniquePaths(int m, int n) {
     return uniquePathsHelper(m - 1, n - 1, new int[n][m]);
@@ -18,6 +19,7 @@ class Solution {
 } 
 
 // Tabulation Method
+// TC --> 0(n*m)
 class Solution {
     public int uniquePaths(int m, int n) {
     int[][] dp=new int[m][n];
