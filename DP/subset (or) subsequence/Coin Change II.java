@@ -10,6 +10,31 @@ public int change(int amount, int[] coins) {
         return dp[amount];
     }
 
+// tabulation
+class Solution {
+    public int change(int amount, int[] coins) {
+        int n=coins.length;
+        int[][] dp = new int[n][amount+1];
+        for(int i=0;i<=amount;i++){ // fill the first row based on the denominations
+            dp[0][i]=(i%coins[0]==0)?1:0;
+        }
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=amount;j++){
+                int notTake=dp[i-1][j];
+
+                int take=0;
+
+                if(coins[i]<=j){
+                    take=dp[i][j-coins[i]];
+                }
+
+                dp[i][j]=take+notTake;
+            }
+        }
+        return dp[n-1][amount];
+    }
+}
+
 // recrusion with memo
 class Solution {
     public int change(int amount, int[] coins) {
